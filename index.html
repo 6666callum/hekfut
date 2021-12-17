@@ -1,15 +1,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet">
     <title>MADFUT Shop</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 </head>
 
 <body>
-    The content of the document......
+    <div class="content">
+        <div class="title-wrapper">
+            <img class="logo" src="img/logo-transparent.png">
+            <h1 class="title">ph0t0shop's MADFUT 22 Autobuy Shop</h1>
+        </div>
+        <div class="box coin-box">
+            <div class="box-content">
+                <b class="coins-text">Coins:</b>
+                <div class="input-group">
+                    <input class="text-input" type="text" value="0" placeholder="0" size="20" id="coins-input"><button class="btn btn-danger reset-coins-btn"><img src="img/undo.svg"></button>
+                </div>
+                <span class="price-wrapper box">Cost: €<span id="coins-price">0</span></span>
+            </div>
+        </div>
+        <div class="box cards-box">
+            <div class="box-content">
+                <div class="collapse-wrapper collapsed">
+                    <div class="collapse-header">
+                        <img src="img/triangle.svg" class="expand-btn">
+                        <b id="cards-title">Cards</b>
+                        <span class="price-wrapper box">Cost: €<span id="cards-price">0</span></span>
+                    </div>
+                    <div class="collapse-content">
+                        <div class="cards-search-wrapper">
+                            <div class="input-group">
+                                <input class="text-input" type="text" placeholder="Search..." size="20" id="cards-filter-input"><button class="btn btn-danger reset-cards-filter-btn"><img src="img/cross.svg"></button>
+                            </div>
+                            <div class="input-group">
+                                <input type="checkbox" name="cards-only-basket" id="cards-only-basket">
+                                <label for="cards-only-basket">Only show cards in basket</label>
+                            </div>
+                        </div>
+                        <div class="cards-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box packs-box">
+            <div class="box-content">
+                <div class="collapse-wrapper collapsed">
+                    <div class="collapse-header">
+                        <img src="img/triangle.svg" class="expand-btn">
+                        <b id="packs-title">Packs</b>
+                        <span class="price-wrapper box">Cost: €<span id="packs-price">0</span></span>
+                    </div>
+                    <div class="collapse-content">
+                        <div class="packs-search-wrapper">
+                            <div class="input-group">
+                                <input class="text-input" type="text" placeholder="Search..." size="20" id="packs-filter-input"><button class="btn btn-danger reset-packs-filter-btn"><img src="img/cross.svg"></button>
+                            </div>
+                            <div class="input-group">
+                                <input type="checkbox" name="packs-only-basket" id="packs-only-basket">
+                                <label for="packs-only-basket">Only show packs in basket</label>
+                            </div>
+                            <button class="btn custom-pack-btn">
+                                <img src="img/logo-transparent.png">
+                                Add custom pack
+                            </button>
+                        </div>
+                        <div class="packs-list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="custom-pack-modal" class="modal">
+        <div class="content">
+            <div class="box">
+                <div class="modal-title">
+                    <span><b>Custom pack creation</b></span>
+                </div>
+                <div class="modal-body">
+                    Below you can fill in the properties for the custom pack.
+                    <div class="input-with-label">
+                        <span>
+                            Card type:
+                            <br>
+                        </span>
+                        <select name="custom-card-type" id="custom-card-type" class="dropdown-input">
+                        </select>
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            Position:
+                            <br>
+                        </span>
+                        <select name="custom-position" id="custom-position" class="dropdown-input">
+                        </select>
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            Minimum rating (0-100, leave blank for any):
+                            <br>
+                        </span>
+                        <input type="text" class="text-input" size="3">
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            Maximum rating (0-100, leave blank for any):
+                            <br>
+                        </span>
+                        <input type="text" class="text-input" size="3">
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            League:
+                            <br>
+                        </span>
+                        <select name="custom-league" id="custom-league" class="dropdown-input">
+                        </select>
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            Club:
+                            <br>
+                        </span>
+                        <select name="custom-club" id="custom-club" class="dropdown-input">
+                        </select>
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            Nation:
+                            <br>
+                        </span>
+                        <select name="custom-nation" id="custom-nation" class="dropdown-input">
+                        </select>
+                    </div>
+                    <div class="input-with-label">
+                        <span>
+                            New probability (0-100%, 100% is guaranteed new):
+                            <br>
+                        </span>
+                        <input type="text" class="text-input" size="3">%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript" src="js/index.js"></script>
 </body>
 
 </html>
