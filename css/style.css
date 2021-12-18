@@ -16,6 +16,11 @@ body {
     padding: 1em;
 }
 
+span,
+button {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
 .modal {
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
@@ -26,6 +31,7 @@ body {
     left: 0px;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
 }
 
 .content {
@@ -57,6 +63,13 @@ body {
     text-align: center;
 }
 
+.pricing-info-close-btn,
+.order-confirm-btn,
+.order-cancel-btn,
+.pricing-info-btn,
+.order-btn,
+.custom-cancel-btn,
+.custom-confirm-btn,
 .custom-pack-btn,
 .reset-packs-filter-btn,
 .reset-cards-filter-btn,
@@ -148,6 +161,7 @@ body {
 
 .dropdown-input {
     width: 15em;
+    padding-left: 0.5em;
 }
 
 .packs-box .text-input,
@@ -249,6 +263,7 @@ body {
     white-space: nowrap;
 }
 
+.custom-confirm-btn,
 .amount-btn {
     height: 2.7em;
     width: 2.7em;
@@ -256,6 +271,7 @@ body {
     border: 1px solid #2c3239;
 }
 
+.custom-confirm-btn:hover,
 .amount-btn:hover {
     background-color: #66ccff;
 }
@@ -291,13 +307,17 @@ body {
     height: 1.7em;
 }
 
-.modal > .content > .box {
+.modal > .content {
+    justify-content: center;
     height: 100%;
+}
+
+.modal > .content > .box {
     width: 90%;
-    margin-top: 1em;
     padding: 0;
     display: flex;
     flex-direction: column;
+    max-height: 90%;
 }
 
 .modal-title {
@@ -312,11 +332,82 @@ body {
     align-items: flex-start;
     background-color: rgba(13,17,23);
     padding: 1em;
+    border-bottom: 1px solid #1f242b;
+    border-top: 1px solid #1f242b;
+    overflow-y: scroll;
+}
+
+.modal-footer {
+    background-color: rgba(13,17,23);
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    border-top: 1px solid #1f242b;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
 }
 
 #custom-pack-modal .modal-body {
     gap: 0.5em;
+}
+
+.custom-cancel-btn,
+.custom-confirm-btn {
+    height: 2.7em;
+    padding: 0 0.5em;
+}
+
+.custom-confirm-btn {
+    width: unset;
+    color: #ffffff;
+}
+
+.ph0t0-img {
+    height: 2em;
+    margin-right: 0.5em;
+}
+
+.total-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    align-items: center;
+    width: calc(100% - 1.5em);
+    gap: 0.5em;
+}
+
+.total-div > .btn {
+    width: 100%;
+    height: 2.7em;
+}
+
+.order-confirm-btn,
+.order-btn {
+    background-color: #2ea043;
+    color: white;
+}
+
+.order-confirm-btn:hover,
+.order-btn:hover {
+    background-color: #5fcf74;
+}
+
+#pricing-info-modal .modal-footer>.btn,
+#order-modal .modal-footer>.btn {
+    height: 2.7em;
+    padding: 0 1em;
+}
+
+#pricing-info-modal .modal-body,
+#order-modal .modal-body {
+    gap: 1em;
+}
+
+/* .join-discord-link {
+
+} */
+
+.join-discord-link > img {
+    width: 8em;
 }

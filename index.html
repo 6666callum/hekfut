@@ -64,7 +64,7 @@
                                 <label for="packs-only-basket">Only show packs in basket</label>
                             </div>
                             <button class="btn custom-pack-btn">
-                                <img src="img/logo-transparent.png">
+                                <img src="img/ph0t0shop.png">
                                 Add custom pack
                             </button>
                         </div>
@@ -73,6 +73,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="total-div">
+            <span>Your total is <b>€<b id="total-price">0</b></b>.</span>
+            <button class="btn order-btn">Order</button>
+            <button class="btn pricing-info-btn">Pricing info</button>
+            <a href="https://discord.gg/madfut-maestro" target="_blank" class="join-discord-link"><img src="img/join_discord.png"></a>
         </div>
     </div>
     <div id="custom-pack-modal" class="modal">
@@ -104,14 +110,14 @@
                             Minimum rating (0-100, leave blank for any):
                             <br>
                         </span>
-                        <input type="text" class="text-input" size="3">
+                        <input type="text" class="text-input zero-hundred-num" size="3" id="custom-min-rating">
                     </div>
                     <div class="input-with-label">
                         <span>
                             Maximum rating (0-100, leave blank for any):
                             <br>
                         </span>
-                        <input type="text" class="text-input" size="3">
+                        <input type="text" class="text-input zero-hundred-num" size="3" id="custom-max-rating">
                     </div>
                     <div class="input-with-label">
                         <span>
@@ -142,8 +148,89 @@
                             New probability (0-100%, 100% is guaranteed new):
                             <br>
                         </span>
-                        <input type="text" class="text-input" size="3">%
+                        <input type="text" class="text-input zero-hundred-num" size="3" id="custom-new-prob">%
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn custom-confirm-btn">Confirm</button>
+                    <button class="btn custom-cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pricing-info-modal" class="modal">
+        <div class="content">
+            <div class="box">
+                <div class="modal-title">
+                    <span><b>Pricing info</b></span>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        Prices are calculated and display automatically. If you want to know the specifics,
+                        you can see them here.<br>
+                        Base prices are as follows:
+                    </div>
+                    <div>
+                        <b>Coins</b><br>
+                        €1 = 100 million<br>
+                        €2 = 250 million<br>
+                        €5 = 700 million
+                    </div>
+                    <div>
+                        <b>Players</b><br>
+                        €1 = 20 cards<br>
+                        €2 = 45 cards<br>
+                        €5 = 150 cards<br>
+                        €10 = 350 cards
+                    </div>
+                    <div>
+                        <b>Packs</b><br>
+                        €1 = 20 packs<br>
+                        €2 = 45 packs<br>
+                        €5 = 150 packs<br>
+                        €10 = 350 packs
+                    </div>
+                    <div>
+                        The above amounts are the thresholds. If you are between these thresholds, a calculation is done
+                        based on the closest threshold <i>below</i> the amount you are ordering, then rounded up to the nearest euro.
+                        For example, let's say you want to order 240 cards. The closest threshold below it is 150 cards. You pay the
+                        price for 150 cards which is €5. Now there are 90 cards remaining. Normally this would cost you €4 to buy on its own
+                        (2×45 cards for 2×€2=€4). But since you are already ordering more than 150 cards, you pay €5 per 150 cards. Thus,
+                        these 90 cards will only cost you €5/150×90=€3. This brings you to a total of €8 for 240 cards.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn pricing-info-close-btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="order-modal" class="modal">
+        <div class="content">
+            <div class="box">
+                <div class="modal-title">
+                    <span><b>Confirm order</b></span>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        By proceeding with your order, you acknowledge that you will get the exact items you ordered deposited
+                        into your wallet on the MADFUT Maestro Discord server. If you have not yet done so, join the server
+                        using the Discord button below, read the <b>#bot-introduction</b> channel and link your MADFUT account. You also acknowledge the following:
+                    </div>
+                    <div>
+                        <b>
+                        If you are not in the Discord server, you will not receive anything. <br>
+                        If you do not have your account linked, you will not receive anything. <br>
+                        If you have attempted to circumvent any security features during ordering, you will not receive anything.<br>
+                        We are not responsible if you order custom packs that don't turn out the way you want (e.g. don't contain the items you had wanted).<br>
+                        We are not responsible if you order any untradable items.
+                        </b>
+                    </div>
+                    <a href="https://discord.gg/madfut-maestro" target="_blank" class="join-discord-link"><img src="img/join_discord.png"></a>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn order-confirm-btn">Confirm</button>
+                    <button class="btn order-cancel-btn">Cancel</button>
                 </div>
             </div>
         </div>

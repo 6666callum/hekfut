@@ -18,7 +18,7 @@ const nationList = [];
 const nationMap = new Map();
 
 const positions = ["LW", "ST", "RW", "LF", "CF", "RF", "CAM", "LM", "CM", "RM", "LWB", "CDM", "RWB", "LB", "CB", "RB", "GK"];
-const cardTypes = ["custom", "fut_champs", "fut_champs_silver", "totw_gold", "totw_silver", "icons", "madfut_icon", "future_icon", "fut_hero", "ucl_rttf", "ucl_tott", "uel_rttf", "uel_tott", "flashback", "objectives", "player_moments", "record_breaker", "league_objectives", "rulebreakers", "numbersup", "signature_signings", "versus_fire", "showdown", "next_generation", "versus_ice"];
+const cardTypes = ["dsc․gg  ̸madfut⎽ maestro | @ph0t0shop modded", "fut_champs", "fut_champs_silver", "totw_gold", "totw_silver", "icons", "madfut_icon", "future_icon", "fut_hero", "ucl_rttf", "ucl_tott", "uel_rttf", "uel_tott", "flashback", "objectives", "player_moments", "record_breaker", "league_objectives", "rulebreakers", "numbersup", "signature_signings", "versus_fire", "showdown", "next_generation", "versus_ice"];
 
 const mappingLists = {
     "club": clubList,
@@ -68,12 +68,14 @@ for (const name of Object.keys(mappingLists)) {
 
 document.querySelectorAll(".modal").forEach(modal => {
     modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
+        if (modal === event.target || event.target.parentElement === modal) {
             modal.style.display = "none";
             document.body.style.overflowY = null;
         }
     })
 });
+
+const totalPrice = document.getElementById("total-price");
 
 // ======== COINS ========
 
@@ -104,6 +106,7 @@ coinsInput.addEventListener("input", (event) => {
         price = Math.ceil(amount / 700_000_000 * 5);
     }
     coinsPrice.textContent = price;
+    totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
 });
 
 const coinResetButton = document.querySelector(".reset-coins-btn");
@@ -213,6 +216,7 @@ for (const [key, value] of cardsMap) {
             price = Math.ceil(totalCards / 350 * 10);
         }
         cardsPrice.textContent = price;
+        totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
 
         if (cardsOnlyBasket.checked) updateCardsFilter();
     }
@@ -347,6 +351,7 @@ for (const [key, value] of packsMap) {
             price = Math.ceil(totalPacks / 350 * 10);
         }
         packsPrice.textContent = price;
+        totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
 
         if (packsOnlyBasket.checked) updatePacksFilter();
     }
@@ -387,13 +392,25 @@ function updatePacksFilter() {
 }
 
 // ======== CUSTOM PACKS MODAL ========
-
+const customPackModal = document.getElementById("custom-pack-modal");
 const customPackBtn = document.querySelector(".custom-pack-btn");
 
 customPackBtn.addEventListener("click", () => {
-    document.getElementById("custom-pack-modal").style.display = "flex";
+    customPackModal.style.display = "flex";
     document.body.style.overflowY = "hidden";
 });
+
+function closeCustomPackModal() {
+    customPackModal.style.display = "none";
+    document.body.style.overflowY = null;
+}
+
+const customCancelBtn = document.querySelector(".custom-cancel-btn");
+customCancelBtn.addEventListener("click", closeCustomPackModal);
+
+const customMinRating = document.getElementById("custom-min-rating");
+const customMaxRating = document.getElementById("custom-max-rating");
+const customNewProb = document.getElementById("custom-new-prob");
 
 const cardTypeSelector = document.getElementById("custom-card-type");
 
@@ -401,7 +418,7 @@ for (const option of cardTypes) {
     const optionElem = document.createElement("option");
     optionElem.value = option;
     let name = option;
-    if (name === "custom") {
+    if (name === "dsc․gg  ̸madfut⎽ maestro | @ph0t0shop modded") {
         name = "Custom ph0t0shop pack";
     } else {
         name = name.toUpperCase().replace(/_/g, " ");
@@ -413,7 +430,7 @@ for (const option of cardTypes) {
 const positionSelector = document.getElementById("custom-position");
 
 const defaultPositionElem = document.createElement("option");
-defaultPositionElem.value = "any";
+defaultPositionElem.value = "";
 defaultPositionElem.textContent = "Any";
 defaultPositionElem.selected = true;
 positionSelector.appendChild(defaultPositionElem);
@@ -428,7 +445,7 @@ for (const option of positions) {
 const leagueSelector = document.getElementById("custom-league");
 
 const defaultLeagueElem = document.createElement("option");
-defaultLeagueElem.value = "any";
+defaultLeagueElem.value = "league_-1";
 defaultLeagueElem.textContent = "Any";
 defaultLeagueElem.selected = true;
 leagueSelector.appendChild(defaultLeagueElem);
@@ -443,7 +460,7 @@ for (const [id, name] of leagueMap) {
 const clubSelector = document.getElementById("custom-club");
 
 const defaultClubElem = document.createElement("option");
-defaultClubElem.value = "any";
+defaultClubElem.value = "club_-1";
 defaultClubElem.textContent = "Any";
 defaultClubElem.selected = true;
 clubSelector.appendChild(defaultClubElem);
@@ -458,7 +475,7 @@ for (const [id, name] of clubMap) {
 const nationSelector = document.getElementById("custom-nation");
 
 const defaultNationElem = document.createElement("option");
-defaultNationElem.value = "any";
+defaultNationElem.value = "nation_-1";
 defaultNationElem.textContent = "Any";
 defaultNationElem.selected = true;
 nationSelector.appendChild(defaultNationElem);
@@ -469,3 +486,231 @@ for (const [id, name] of nationMap) {
     optionElem.textContent = name.name;
     nationSelector.appendChild(optionElem);
 }
+
+document.querySelectorAll(".zero-hundred-num").forEach(elem => {
+    elem.value = "";
+
+    elem.addEventListener("input", () => {
+        let text = elem.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "").substring(0, 3);
+        let amount = Math.max(0, Math.min(100, parseInt(text)));
+
+        if (!isNaN(amount)) {
+            elem.value = amount.toString();
+        } else {
+            elem.value = "";
+        }
+    });
+});
+
+function ratingToStr(minRating, maxRating) {
+	try {
+		return minRating + (maxRating >= 100 ? "+" : "-" + maxRating);
+	} catch {
+		return "";
+	}
+}
+
+function newProbabilityToStr(newProb) {
+	return newProb >= 100 ? "NEW" : `${newProb}% NEW`;
+}
+
+function UTF8ToBase64( str ) {
+    return window.btoa(encodeURIComponent( str ));
+}
+
+function base64ToUTF8( str ) {
+    return decodeURIComponent(window.atob( str ));
+}
+
+const customConfirmBtn = document.querySelector(".custom-confirm-btn");
+customConfirmBtn.addEventListener("click", () => {
+    const pack = {
+        cardType: cardTypeSelector.value,
+        position: positionSelector.value,
+        minRating: !isNaN(parseInt(customMinRating.value)) ? parseInt(customMinRating.value) : 0,
+        maxRating: !isNaN(parseInt(customMaxRating.value)) ? parseInt(customMaxRating.value) : 100,
+        league: parseInt(leagueSelector.value.substring("league_".length)),
+        club: parseInt(clubSelector.value.substring("club_".length)),
+        nation: parseInt(nationSelector.value.substring("nation_".length)),
+        newProb: !isNaN(parseInt(customNewProb.value)) ? parseInt(customNewProb.value) : 100
+    };
+
+    const packId = UTF8ToBase64(JSON.stringify(pack));
+
+    let name = "Unknown pack";
+    const typeName = pack.cardType === "dsc․gg  ̸madfut⎽ maestro | @ph0t0shop modded" ? "ph0t0shop" : pack.cardType;
+
+    name = `${typeName.replace(/_/g, " ")} ${ratingToStr(parseInt(pack.minRating), parseInt(pack.maxRating))} ${newProbabilityToStr(parseInt(pack.newProb))} pack`;
+
+    if (pack.league !== -1 || pack.club !== -1 || pack.nation !== -1) {
+        const props = [];
+        if (pack.league !== -1) props.push(leagueMap.get(leagueSelector.value));
+        if (pack.club !== -1) props.push(clubMap.get(clubSelector.value));
+        if (pack.nation !== -1) props.push(nationMap.get(nationSelector.value));
+        name += `(${props.join(", ")})`;
+    }
+
+    const div = document.createElement("div");
+    div.className = "box pack-item";
+    div.setAttribute("pack-id", packId);
+    div.setAttribute("custom-pack", "yes");
+    div.setAttribute("normalizedname", normalize(name));
+    
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = name;
+
+    if (typeName === "ph0t0shop") {
+        const ph0t0Img = document.createElement("img");
+        ph0t0Img.src = "img/ph0t0shop.png";
+        ph0t0Img.className = "ph0t0-img";
+        nameSpan.style.display = "flex";
+        nameSpan.style.alignItems = "center";
+        nameSpan.prepend(ph0t0Img);
+    }
+
+    div.appendChild(nameSpan);
+
+    const buttonsWrapper = document.createElement("div");
+    buttonsWrapper.className = "pack-buttons";
+
+    const decreaseImg = document.createElement("img");
+    decreaseImg.src = "img/minus.svg";
+
+    const decreaseButton = document.createElement("button");
+    decreaseButton.className = "btn amount-btn decrease-btn";
+    decreaseButton.appendChild(decreaseImg);
+    buttonsWrapper.appendChild(decreaseButton);
+
+    const amountInput = document.createElement("input");
+    amountInput.type = "text";
+    amountInput.className = "text-input amount-input";
+    amountInput.size = "4";
+    amountInput.placeholder = "0";
+    amountInput.value = "1";
+    div.setAttribute("amount", "1");
+    packsBasket[packId] = 1;
+    totalPacks = Object.values(packsBasket).reduce((prev, curr) => prev + curr);
+
+    packsTitle.textContent = "Packs" + (totalPacks === 0 ? "" : ` (${totalPacks} total)`);
+
+    let price = 0;
+    if (totalPacks === 0) {
+        price = 0;
+    } else if (totalPacks < 45) {
+        price = Math.min(2, Math.ceil(totalPacks / 20 * 1));
+    } else if (totalPacks < 150) {
+        price = Math.min(5, Math.ceil(totalPacks / 45 * 2));
+    } else if (totalPacks < 350) {
+        price = Math.min(10, Math.ceil(totalPacks / 150 * 5));
+    } else {
+        price = Math.ceil(totalPacks / 350 * 10);
+    }
+    packsPrice.textContent = price;
+    totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
+
+    buttonsWrapper.appendChild(amountInput);
+
+    const increaseImg = document.createElement("img");
+    increaseImg.src = "img/plus.svg";
+
+    const increaseButton = document.createElement("button");
+    increaseButton.className = "btn amount-btn increase-btn";
+    increaseButton.appendChild(increaseImg);
+    buttonsWrapper.appendChild(increaseButton);
+
+    function onInput(offset) {
+        offset ??= 0;
+
+        let text = amountInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "").substring(0, 4);
+        let amount = Math.max(0, Math.min(9999, parseInt(text) + offset));
+        if (isNaN(amount)) {
+            amount = 0;
+        };
+
+        if (amount === 0) {
+            div.remove();
+        }
+
+        amountInput.value = amount.toString();
+        div.setAttribute("amount", amount.toString());
+
+        packsBasket[packId] = amount;
+        totalPacks = Object.values(packsBasket).reduce((prev, curr) => prev + curr);
+
+        packsTitle.textContent = "Packs" + (totalPacks === 0 ? "" : ` (${totalPacks} total)`);
+
+        let price = 0;
+        if (totalPacks === 0) {
+            price = 0;
+        } else if (totalPacks < 45) {
+            price = Math.min(2, Math.ceil(totalPacks / 20 * 1));
+        } else if (totalPacks < 150) {
+            price = Math.min(5, Math.ceil(totalPacks / 45 * 2));
+        } else if (totalPacks < 350) {
+            price = Math.min(10, Math.ceil(totalPacks / 150 * 5));
+        } else {
+            price = Math.ceil(totalPacks / 350 * 10);
+        }
+        packsPrice.textContent = price;
+        totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
+
+        if (packsOnlyBasket.checked) updatePacksFilter();
+    }
+
+    amountInput.addEventListener("input", () => onInput());
+
+    decreaseButton.addEventListener("click", () => onInput(-1));
+
+    increaseButton.addEventListener("click", () => onInput(1));
+
+    div.appendChild(buttonsWrapper);
+    packsList.prepend(div);
+
+    closeCustomPackModal();
+});
+
+// ======== ORDERING ========
+const orderModal = document.getElementById("order-modal");
+const orderBtn = document.querySelector(".order-btn");
+const orderCancelButton = document.querySelector(".order-cancel-btn");
+const orderConfirmButton = document.querySelector(".order-confirm-btn");
+
+orderBtn.addEventListener("click", () => {
+    const finalPrice = parseInt(totalPrice.textContent);
+    if (finalPrice === 0) {
+        alert("Your basket is empty.");
+        return;
+    }
+    if (finalPrice > 50) {
+        alert("You cannot order for more than €50 at a time. Please split up your order.");
+        return;
+    }
+    orderModal.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+});
+
+orderCancelButton.addEventListener("click", () => {
+    orderModal.style.display = "none";
+    document.body.style.overflowY = null;
+});
+
+orderConfirmButton.addEventListener("click", () => {
+    window.location.href = "https://shoppy.gg/shit";
+});
+
+// ======== PRICING INFO ========
+
+const pricingInfoModal = document.getElementById("pricing-info-modal");
+const pricingInfoBtn = document.querySelector(".pricing-info-btn");
+const pricingInfoCloseBtn = document.querySelector(".pricing-info-close-btn");
+
+pricingInfoBtn.addEventListener("click", () => {
+    pricingInfoModal.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+});
+
+pricingInfoCloseBtn.addEventListener("click", () => {
+    pricingInfoModal.style.display = "none";
+    document.body.style.overflowY = null;
+});
+
