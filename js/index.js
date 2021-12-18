@@ -544,10 +544,10 @@ customConfirmBtn.addEventListener("click", () => {
 
     if (pack.league !== -1 || pack.club !== -1 || pack.nation !== -1) {
         const props = [];
-        if (pack.league !== -1) props.push(leagueMap.get(leagueSelector.value));
-        if (pack.club !== -1) props.push(clubMap.get(clubSelector.value));
-        if (pack.nation !== -1) props.push(nationMap.get(nationSelector.value));
-        name += `(${props.join(", ")})`;
+        if (pack.league !== -1) props.push(leagueMap.get(leagueSelector.value).name);
+        if (pack.club !== -1) props.push(clubMap.get(clubSelector.value).name);
+        if (pack.nation !== -1) props.push(nationMap.get(nationSelector.value).name);
+        name += ` (${props.join(", ")})`;
     }
 
     const div = document.createElement("div");
