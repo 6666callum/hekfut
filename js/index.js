@@ -192,7 +192,7 @@ for (const [key, value] of cardsMap) {
     increaseButton.appendChild(increaseImg);
     buttonsWrapper.appendChild(increaseButton);
 
-    function onInput(offset) {
+    const onInput = (offset) => {
         offset ??= 0;
 
         let text = amountInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "").substring(0, 4);
@@ -327,7 +327,7 @@ for (const [key, value] of packsMap) {
     increaseButton.appendChild(increaseImg);
     buttonsWrapper.appendChild(increaseButton);
 
-    function onInput(offset) {
+    const onInput = (offset) => {
         offset ??= 0;
 
         let text = amountInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "").substring(0, 4);
@@ -624,7 +624,7 @@ customConfirmBtn.addEventListener("click", () => {
     increaseButton.appendChild(increaseImg);
     buttonsWrapper.appendChild(increaseButton);
 
-    function onInput(offset) {
+    const onInput = (offset) => {
         offset ??= 0;
 
         let text = amountInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "").substring(0, 4);
