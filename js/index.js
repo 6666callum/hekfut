@@ -225,11 +225,11 @@ for (const [key, value] of cardsMap) {
         if (cardsOnlyBasket.checked) updateCardsFilter();
     }
 
-    amountInput.addEventListener("input", () => onInput());
+    amountInput.addEventListener("input", () => {onInput()});
 
-    decreaseButton.addEventListener("click", () => onInput(-1));
+    decreaseButton.addEventListener("click", () => {onInput(-1)});
 
-    increaseButton.addEventListener("click", () => onInput(1));
+    increaseButton.addEventListener("click", () => {onInput(1)});
 
     div.appendChild(buttonsWrapper);
     cardsList.appendChild(div);
@@ -360,11 +360,11 @@ for (const [key, value] of packsMap) {
         if (packsOnlyBasket.checked) updatePacksFilter();
     }
 
-    amountInput.addEventListener("input", () => onInput());
+    amountInput.addEventListener("input", () => {onInput()});
 
-    decreaseButton.addEventListener("click", () => onInput(-1));
+    decreaseButton.addEventListener("click", () => {onInput(-1)});
 
-    increaseButton.addEventListener("click", () => onInput(1));
+    increaseButton.addEventListener("click", () => {onInput(1)});
 
     div.appendChild(buttonsWrapper);
     packsList.appendChild(div);
@@ -661,11 +661,11 @@ customConfirmBtn.addEventListener("click", () => {
         if (packsOnlyBasket.checked) updatePacksFilter();
     }
 
-    amountInput.addEventListener("input", () => onInput());
+    amountInput.addEventListener("input", () => {onInput()});
 
-    decreaseButton.addEventListener("click", () => onInput(-1));
+    decreaseButton.addEventListener("click", () => {onInput(-1)});
 
-    increaseButton.addEventListener("click", () => onInput(1));
+    increaseButton.addEventListener("click", () => {onInput(1)});
 
     div.appendChild(buttonsWrapper);
     packsList.prepend(div);
