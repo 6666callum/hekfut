@@ -710,7 +710,7 @@ orderConfirmButton.addEventListener("click", () => {
         username: madfutUsername.value,
         packs: packsBasket,
         cards: cardsBasket,
-        coins: parseInt(coinsInput.value)
+        coins: parseInt(coinsInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, ""))
     }));
     
     let orderUrl = `https://shoppy.gg/product/${orderName}?items=${orderData}`;
