@@ -86,8 +86,9 @@ const totalPrice = document.getElementById("total-price");
 const coinsPrice = document.getElementById("coins-price");
 const coinsInput = document.getElementById("coins-input");
 coinsInput.value = "0";
-coinsInput.addEventListener("input", (event) => {
-    let text = event.target.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "");
+
+function updateCoinsInput() {
+    let text = coinsInput.value.replace(/[^0-9]/g, "").replace(",", "").replace(/^0(?!$)0*/g, "");
     let amount = parseInt(text);
     if (isNaN(amount)) {
         amount = 0;
@@ -97,7 +98,7 @@ coinsInput.addEventListener("input", (event) => {
     for (let i = text.length - 3; i > 0; i-= 3) {
         text = text.substring(0, i) + "," + text.substring(i);
     }
-    event.target.value = text;
+    coinsInput.value = text;
 
     let price = 0;
     if (amount === 0) {
@@ -111,12 +112,15 @@ coinsInput.addEventListener("input", (event) => {
     }
     coinsPrice.textContent = price;
     totalPrice.textContent = parseInt(coinsPrice.textContent) + parseInt(cardsPrice.textContent) + parseInt(packsPrice.textContent); // lol
-});
+}
+
+coinsInput.addEventListener("input", updateCoinsInput);
 
 const coinResetButton = document.querySelector(".reset-coins-btn");
 
 coinResetButton.addEventListener("click", () => {
     coinsInput.value = "0";
+    updateCoinsInput();
 });
 
 document.querySelectorAll(".collapse-header").forEach(elem => {
