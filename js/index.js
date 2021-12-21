@@ -289,6 +289,7 @@ let totalPacks = 0;
 const packsList = document.querySelector(".packs-list");
 
 for (const [key, value] of packsMap) {
+    if (["fatal_rare","fatal_special","fatal_silver","fatal_nonrare","fatal_bronze"].includes(key)) continue;
     const name = value.name;
     const div = document.createElement("div");
     div.className = "box pack-item";
