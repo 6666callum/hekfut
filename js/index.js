@@ -414,6 +414,27 @@ function closeCustomPackModal() {
     document.body.style.overflowY = null;
 }
 
+if(new URLSearchParams(window.location.search).get('devmode') == "true") {
+    const copyPackIdsBtn = document.querySelector(".copy-pack-ids-btn");
+    copyPackIdsBtn.style.display = "flex";
+    copyPackIdsBtn.addEventListener("click", async () => {
+        const packIds = [];
+        for (const packId in packsBasket) {
+            const amount = packsBasket[packId];
+            if (amount > 0) {
+                if (packId.startsWith("custom:")) {
+                    const customPack = JSON.parse(base64ToUTF8(packId.substring("custom:".length)));
+                    packIds.push(`query,${customPack.cardType},${customPack.position},${customPack.minRating},${customPack.maxRating},${customPack.league},${customPack.club},${customPack.nation},false,${customPack.newProb}`);
+                } else {
+                    packIds.push(packId);
+                }
+            }
+        }
+        await window.navigator.clipboard.writeText(packIds.join("."));
+        alert("Successfully copied pack IDs to clipboard!");
+    });
+}
+
 const customCancelBtn = document.querySelector(".custom-cancel-btn");
 customCancelBtn.addEventListener("click", closeCustomPackModal);
 
