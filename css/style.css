@@ -71,6 +71,7 @@ button {
 .custom-cancel-btn,
 .custom-confirm-btn,
 .copy-pack-ids-btn,
+.copy-card-ids-btn,
 .custom-pack-btn,
 .reset-packs-filter-btn,
 .reset-cards-filter-btn,
@@ -295,6 +296,7 @@ button {
     padding: 0px 0.5em;
 }
 
+.btn.copy-card-ids-btn,
 .btn.copy-pack-ids-btn,
 .btn.custom-pack-btn {
     height: 2.7em;
@@ -305,6 +307,7 @@ button {
     gap: 0.5em;
 }
 
+.btn.copy-card-ids-btn,
 .btn.copy-pack-ids-btn {
     display: none;
 }

@@ -424,14 +424,28 @@ if(new URLSearchParams(window.location.search).get('devmode') == "true") {
             if (amount > 0) {
                 if (packId.startsWith("custom:")) {
                     const customPack = JSON.parse(base64ToUTF8(packId.substring("custom:".length)));
-                    packIds.push(`query,${customPack.cardType},${customPack.position},${customPack.minRating},${customPack.maxRating},${customPack.league},${customPack.club},${customPack.nation},false,${customPack.newProb}`);
+                    packIds.push(`${amount === 1 ? "" : amount + "x"}query,${customPack.cardType},${customPack.position},${customPack.minRating},${customPack.maxRating},${customPack.league},${customPack.club},${customPack.nation},false,${customPack.newProb}`);
                 } else {
-                    packIds.push(packId);
+                    packIds.push((amount === 1 ? "" : amount + "x") + packId);
                 }
             }
         }
         await window.navigator.clipboard.writeText(packIds.join("."));
         alert("Successfully copied pack IDs to clipboard!");
+    });
+
+    const copyCardIdsBtn = document.querySelector(".copy-card-ids-btn");
+    copyCardIdsBtn.style.display = "flex";
+    copyCardIdsBtn.addEventListener("click", async () => {
+        const cardIds = [];
+        for (const cardId in cardsBasket) {
+            const amount = cardsBasket[cardId];
+            if (amount > 0) {
+                cardIds.push((amount === 1 ? "" : amount + "x") + cardId);
+            }
+        }
+        await window.navigator.clipboard.writeText(cardIds.join(","));
+        alert("Successfully copied card IDs to clipboard!");
     });
 }
 
